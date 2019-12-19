@@ -9,12 +9,15 @@ class App extends Component {
       {name: 'Tee Tee', age: 10}
     ]
   }
+  switchNameHandle = () => {
+    console.log('Clicked!!!')
+  }
 render() {
   return (
     <div className="App">
       <h1>Hello</h1>
      <p>test JSX</p>
-     <button>Switch Name</button>
+     <button onClick={this.switchNameHandle}>Switch Name</button>
      <Person name={this.state.person[0].name} age={this.state.person[0].age}></Person>
      <Person name={this.state.person[1].name} age={this.state.person[1].age}>My hobby is badminton</Person>
      <Person name={this.state.person[2].name} age={this.state.person[2].age}></Person>
