@@ -6,7 +6,9 @@ function App() {
     <div className="App">
       <h1>Hello</h1>
      <p>test JSX</p>
-     <Person></Person>
+     <Person name="Tanawat" age="25"></Person>
+     <Person name="Sirawich" age="24"></Person>
+     <Person name="Teerapat" age="10"></Person>
     </div>
   );
   // return React.createElement('div', {className: 'App'}, React.createElement('h1', null, 'Work now?'))
