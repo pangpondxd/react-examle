@@ -53,16 +53,11 @@ class App extends Component {
       padding: "8px",
       cursor: "pointer"
     };
-    return (
-      <div className="App">
-        <h1 className="text-red-600"> Hello </h1>{" "}
-        <p className="text-2xl text-red-700"> test JSX </p>{" "}
-        <button style={style} onClick={this.togglePersonHandler}>
-          Switch Name{" "}
-        </button>{" "}
-        {
-        this.state.showPerson === true ? 
-          <div>
+
+    let person = null;
+    if (this.state.showPerson){
+        person = (
+            <div>
             <Person
               name={this.state.person[0].name}
               age={this.state.person[0].age}
@@ -80,8 +75,22 @@ class App extends Component {
               age={this.state.person[2].age}
             ></Person>{" "}
           </div>
-         : <h1>Hello It's false</h1>
-         }{" "}
+        )
+    }
+
+    return (
+      <div className="App">
+        <h1 className="text-red-600"> Hello </h1>{" "}
+        <p className="text-2xl text-red-700"> test JSX </p>{" "}
+        <button style={style} onClick={this.togglePersonHandler}>
+          Switch Name{" "}
+        </button>{" "}
+        {/* {
+        this.state.showPerson === true ?  */}
+         
+         {/* : <h1>Hello It's false</h1>
+         }{" "} */}
+         {person}
       </div>
     );
     // return React.createElement('div', {className: 'App'}, React.createElement('h1', null, 'Work now?'))
