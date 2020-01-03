@@ -11,7 +11,8 @@ class App extends Component {
       { name: "Tee Tee", age: 10 }
     ],
     otherState: "some other value",
-    showPerson: false
+    showPerson: false,
+    showName: false
   };
   switchNameHandle = newName => {
     // console.log('Clicked!!!')
@@ -24,6 +25,21 @@ class App extends Component {
         },
         { name: "Sirawich", age: 24 },
         { name: "Teerapat", age: 10 }
+      ]
+    });
+  };
+
+  switchNameHandle1 = () => {
+    // console.log('Clicked!!!')
+    //Don't do this this.state.person[0].name = 'Tanawat'
+    this.setState({
+      person: [
+        {
+          name: "Jo",
+          age: 25
+        },
+        { name: "Ex", age: 24 },
+        { name: "Tee Tee", age: 10 }
       ]
     });
   };
@@ -43,8 +59,18 @@ class App extends Component {
   togglePersonHandler = () => {
     const doesShow = this.state.showPerson
     this.setState({showPerson: !doesShow})
-
   };
+
+  toggleNameHandler = () => {
+    const doesShow = this.state.showName
+    this.setState({showName: !doesShow})
+   if(doesShow === false){
+        this.switchNameHandle("dukdui")
+   }
+   else{
+    this.switchNameHandle1()
+   }
+  }
   render() {
     const style = {
       backgroundColor: "white",
@@ -83,8 +109,11 @@ class App extends Component {
         <h1 className="text-red-600"> Hello </h1>{" "}
         <p className="text-2xl text-red-700"> test JSX </p>{" "}
         <button style={style} onClick={this.togglePersonHandler}>
-          Switch Name{" "}
+          Switch Table{" "}
         </button>{" "}
+        <button style={style} onClick={() => this.toggleNameHandler()}>
+            Switch Name
+        </button>
         {/* {
         this.state.showPerson === true ?  */}
          
