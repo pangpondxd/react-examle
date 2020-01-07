@@ -5,10 +5,11 @@ import "./assets/css/tailwind.css";
 import Person from "./Person/Person";
 class App extends Component {
   state = {
+      //id ต้อง ยูนีค
     persons: [
-      { name: "Jo", age: 25 },
-      { name: "Ex", age: 24 },
-      { name: "Tee Tee", age: 10 }
+      { id: "test1",name: "Jo", age: 25 },
+      { id: "test2",name: "Ex", age: 24 },
+      { id: "test3",name: "Tee Tee", age: 10 }
     ],
     otherState: "some other value",
     showPerson: false,
@@ -72,7 +73,8 @@ class App extends Component {
   };
 
   deletePersonHandler = (personIndex) => {
-      const persons = this.state.persons
+    //   const persons = this.state.persons
+    const persons = [...this.state.persons]
       persons.splice(personIndex, 1)
       this.setState({persons: persons})
   };
@@ -96,6 +98,7 @@ class App extends Component {
                 click={() => this.deletePersonHandler(index)}
                 name={person.name}
                 age={person.age}
+                key= {person.id}
               />
             );
           })}
