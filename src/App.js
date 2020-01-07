@@ -5,7 +5,7 @@ import "./assets/css/tailwind.css";
 import Person from "./Person/Person";
 class App extends Component {
   state = {
-    person: [
+    persons: [
       { name: "Jo", age: 25 },
       { name: "Ex", age: 24 },
       { name: "Tee Tee", age: 10 }
@@ -18,7 +18,7 @@ class App extends Component {
     // console.log('Clicked!!!')
     //Don't do this this.state.person[0].name = 'Tanawat'
     this.setState({
-      person: [
+      persons: [
         {
           name: newName,
           age: 25
@@ -33,7 +33,7 @@ class App extends Component {
     // console.log('Clicked!!!')
     //Don't do this this.state.person[0].name = 'Tanawat'
     this.setState({
-      person: [
+      persons: [
         {
           name: "Jo",
           age: 25
@@ -45,7 +45,7 @@ class App extends Component {
   };
   nameChangedHandle = event => {
     this.setState({
-      person: [
+      persons: [
         {
           name: "Tanawat",
           age: 25
@@ -57,20 +57,26 @@ class App extends Component {
   };
 
   togglePersonHandler = () => {
-    const doesShow = this.state.showPerson
-    this.setState({showPerson: !doesShow})
+    const doesShow = this.state.showPerson;
+    this.setState({ showPerson: !doesShow });
   };
 
   toggleNameHandler = () => {
-    const doesShow = this.state.showName
-    this.setState({showName: !doesShow})
-   if(doesShow === false){
-        this.switchNameHandle("dukdui")
-   }
-   else{
-    this.switchNameHandle1()
-   }
-  }
+    const doesShow = this.state.showName;
+    this.setState({ showName: !doesShow });
+    if (doesShow === false) {
+      this.switchNameHandle("dukdui");
+    } else {
+      this.switchNameHandle1();
+    }
+  };
+
+  deletePersonHandler = (personIndex) => {
+      const persons = this.state.persons
+      persons.splice(personIndex, 1)
+      this.setState({persons: persons})
+  };
+
   render() {
     const style = {
       backgroundColor: "white",
@@ -81,27 +87,20 @@ class App extends Component {
     };
 
     let person = null;
-    if (this.state.showPerson){
-        person = (
-            <div>
-            <Person
-              name={this.state.person[0].name}
-              age={this.state.person[0].age}
-            />{" "}
-            <Person
-              name={this.state.person[1].name}
-              age={this.state.person[1].age}
-              click={() => this.switchNameHandle("Kooooo")}
-              changed={this.nameChangedHandle}
-            >
-              My hobby is badminton{" "}
-            </Person>{" "}
-            <Person
-              name={this.state.person[2].name}
-              age={this.state.person[2].age}
-            ></Person>{" "}
-          </div>
-        )
+    if (this.state.showPerson) {
+      person = (
+        <div>
+          {this.state.persons.map((person, index) => {
+            return (
+              <Person
+                click={() => this.deletePersonHandler(index)}
+                name={person.name}
+                age={person.age}
+              />
+            );
+          })}
+        </div>
+      );
     }
 
     return (
@@ -112,14 +111,13 @@ class App extends Component {
           Switch Table{" "}
         </button>{" "}
         <button style={style} onClick={() => this.toggleNameHandler()}>
-            Switch Name
+          Switch Name
         </button>
         {/* {
         this.state.showPerson === true ?  */}
-         
-         {/* : <h1>Hello It's false</h1>
+        {/* : <h1>Hello It's false</h1>
          }{" "} */}
-         {person}
+        {person}
       </div>
     );
     // return React.createElement('div', {className: 'App'}, React.createElement('h1', null, 'Work now?'))
